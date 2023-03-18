@@ -1,5 +1,6 @@
 const getSum = require('./1');
 const arithmetic = require('./2')
+const checkNumber = require('./3');
 
 describe('getSum function',() => {
     const arr = [1, 2, 3];
@@ -59,7 +60,31 @@ describe ('arithmetic function', () => {
         expect(arithmetic(a, b, operator3)).toBeDefined();
         expect(arithmetic(a, b, operator4)).toBeDefined();
         expect(arithmetic()).not.toBeUndefined();
-    })
+    });
     
-})
+});
 
+describe ('checkNumber function', ()=>{
+    const num1 = 8;
+    const num2 = 7;
+    test('should be truthy for even numbers', ()=>{
+        expect(checkNumber(num1)).toBeTruthy();
+        expect(checkNumber(num1)).not.toBeFalsy();
+    });
+    test('should be falsy for odd numbers', ()=>{
+        expect(checkNumber(num2)).toBeFalsy();
+        expect(checkNumber(num2)).not.toBeTruthy();
+    });
+    test('should return a defined value', ()=>{
+        expect(checkNumber(num1)).toBeDefined();
+        expect(checkNumber(num2)).not.toBeUndefined();
+    });
+    test('should calculate remainder corerctly', ()=>{
+        expect(checkNumber(num1)).toBe(true);
+        expect(checkNumber(num2)).toBe(false);
+    });
+    test('should return a boolean value', ()=>{
+        expect(checkNumber(num1)).toStrictEqual(true);
+        expect(checkNumber(num2)).toStrictEqual(false);
+    });
+});
