@@ -1,4 +1,5 @@
 const getSum = require('./1');
+const arithmetic = require('./2')
 
 describe('getSum function',() => {
     const arr = [1, 2, 3];
@@ -23,9 +24,42 @@ describe('getSum function',() => {
         expect(getSum(arr)).toBeGreaterThan(arr[1]);
         expect(getSum(arr2)).toBeGreaterThanOrEqual(0.6);
         expect(getSum(arr2)).toBeLessThanOrEqual(0.65);
-    })
+    });
     test('should not return strings', ()=>{
         expect(getSum(arr)).not.toContain(/^[A-ZА-ЯЁ]$/i);
+    });
+});
+
+describe ('arithmetic function', () => {
+    let a = 7;
+    let b = 5;
+    let operator1 = 'add';
+    let operator2 = 'subtract'
+    let operator3 = 'multiply'
+    let operator4 = 'divide'
+    test('should add numbers correctly', ()=>{
+        expect(arithmetic(a, b, operator1)).toBe(12);
+        expect(arithmetic(a, b, operator1)).not.toBe(75);
+    });
+    test('should subtract numbers correctly', ()=>{
+        expect(arithmetic(a,b,operator2)).toBe(2);
+        expect(arithmetic(a,b,operator2)).toBeLessThan(3);
+    });
+    test('should multiply numbers corectly', ()=>{
+        expect(arithmetic(a,b,operator3)).toBe(35);
+        expect(arithmetic(a,b,operator3)).toBeGreaterThan(34);
+    });
+    test('should divide numbers correctly', ()=>{
+        expect(arithmetic(a,b,operator4)).toBe(1.4);
+        expect(arithmetic(a, b, operator4)).toBeCloseTo(1.399);
+    });
+    test('shoud return defined results', ()=>{
+        expect(arithmetic(a, b, operator1)).toBeDefined();
+        expect(arithmetic(a, b, operator2)).toBeDefined();
+        expect(arithmetic(a, b, operator3)).toBeDefined();
+        expect(arithmetic(a, b, operator4)).toBeDefined();
+        expect(arithmetic()).not.toBeUndefined();
     })
+    
 })
 
